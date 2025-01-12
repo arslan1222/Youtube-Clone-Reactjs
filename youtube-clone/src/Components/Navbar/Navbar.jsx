@@ -2,11 +2,11 @@ import React from 'react'
 import './Navbar.css'
 import {assets} from '../../assets/assets.js'
 
-const Navbar = () => {
+const Navbar = ({setSidebar}) => {
   return (
     <nav className='flex-div'>
       <div className="nav-left flex-div">
-        <img src={assets.menu} alt="" className='menu-icon' />
+        <img onClick={()=>setSidebar(prev=>prev===false ? true : false)} src={assets.menu} alt="" className='menu-icon' />
         <img src={assets.logo} alt="" className='logo' />
       </div>
 
