@@ -8,9 +8,8 @@ import entertainment from './entertainment.png'
 import explore from './explore.png'
 import game_icon from './game_icon.png'
 import gerard from './gerard.png'
-import hiatory from './hiatory.png'
+import history from './history.png'
 import home from './home.png'
-import jack from './jack.png'
 import like from './like.png'
 import library from './library.png'
 import megan from './megan.png'
@@ -20,6 +19,7 @@ import more from './more.png'
 import music from './music.png'
 import news from './news.png'
 import notification from './notification.png'
+import profile_icon from './profile_icon.jpg'
 import save from './save.png'
 import search from './search.png'
 import share from './share.png'
@@ -43,18 +43,18 @@ import thumbnail8 from './thumbnail8.png'
 
 import tom from './tom.png'
 import upload from './upload.png'
-import user_profile from './user-profile.png'
-import video from './library.png'
+import user_profile from './user_profile.jpg'
+import video from './video.mp4'
 import voice_search from './voice-search.png'
 
 
 
-export {
+export const assets = {
     logo,
     automobiles, blogs, cameron, cast, dislike, entertainment, explore,
-    game_icon, gerard, hiatory, home, jack, library, like, megan, menu,
-    messages, more, music, news, notification, save, search, share, show_more,
-    simon, sports, subscription, tech,
+    game_icon, gerard, history, home, library, like, megan, menu,
+    messages, more, music, news, notification, profile_icon, save, search, share, show_more, menu,
+    simon, sports, subscription,
     thumbnail1, thumbnail2, thumbnail3, thumbnail4, thumbnail5, thumbnail6 ,thumbnail7, thumbnail8,
     tom, tech, upload, user_profile, video, voice_search
 }
