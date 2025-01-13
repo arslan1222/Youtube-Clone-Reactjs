@@ -6,3 +6,10 @@
     padding: 20px 2%;
 
 }
+
+@media(max-width: 900px){
+    .play-container {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}

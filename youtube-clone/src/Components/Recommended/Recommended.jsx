@@ -1,77 +1,50 @@
-import React from 'react'
-import './Recommended.css'
-import { assets } from '../../assets/assets.js'
+import React, { useEffect, useState } from "react";
+import "./Recommended.css";
+import { assets } from "../../assets/assets.js";
+import moment from "moment";
+import { valueConverter } from "../../data.js";
+import { Link } from "react-router-dom";
 
-const Recommended = () => {
+
+const Recommended = ({ categoryId }) => {
+  //Fetching related data
+  const [apiData, setApiData] = useState([]);
+
+  const API_KEY = import.meta.env.VITE_API_BASE_URL;
+
+  const fetchData = async () => {
+    const relatedVideosUrl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=100&regionCode=US&videoCategoryId=${categoryId}&key=${API_KEY}`;
+
+    await fetch(relatedVideosUrl)
+      .then((response) => response.json())
+      .then((data) => setApiData(data.items));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
-    <div className='recommended'>
-        <div className="side-video-list">
-            <img src={assets.thumbnail1} alt="" />
-            <div className="vid-info">
-                <h4>Best channel to know, How to grow</h4>
-                <p>How i Grow</p>
-                <p>153K views &bull; 2 days ago</p>
-            </div>
-        </div>
-        <div className="side-video-list">
-            <img src={assets.thumbnail2} alt="" />
-            <div className="vid-info">
-                <h4>Best channel to know, How to grow</h4>
-                <p>How i Grow</p>
-                <p>153K views &bull; 2 days ago</p>
-            </div>
-        </div>
-        <div className="side-video-list">
-            <img src={assets.thumbnail3} alt="" />
-            <div className="vid-info">
-                <h4>Best channel to know, How to grow</h4>
-                <p>How i Grow</p>
-                <p>153K views &bull; 2 days ago</p>
-            </div>
-        </div>
-        <div className="side-video-list">
-            <img src={assets.thumbnail4} alt="" />
-            <div className="vid-info">
-                <h4>Best channel to know, How to grow</h4>
-                <p>How i Grow</p>
-                <p>153K views &bull; 2 days ago</p>
-            </div>
-        </div>
-        <div className="side-video-list">
-            <img src={assets.thumbnail5} alt="" />
-            <div className="vid-info">
-                <h4>Best channel to know, How to grow</h4>
-                <p>How i Grow</p>
-                <p>153K views &bull; 2 days ago</p>
-            </div>
-        </div>
-        <div className="side-video-list">
-            <img src={assets.thumbnail6} alt="" />
-            <div className="vid-info">
-                <h4>Best channel to know, How to grow</h4>
-                <p>How i Grow</p>
-                <p>153K views &bull; 2 days ago</p>
-            </div>
-        </div>
-        <div className="side-video-list">
-            <img src={assets.thumbnail7} alt="" />
-            <div className="vid-info">
-                <h4>Best channel to know, How to grow</h4>
-                <p>How i Grow</p>
-                <p>153K views &bull; 2 days ago</p>
-            </div>
-        </div>
-        <div className="side-video-list">
-            <img src={assets.thumbnail8} alt="" />
-            <div className="vid-info">
-                <h4>Best channel to know, How to grow</h4>
-                <p>How i Grow</p>
-                <p>153K views &bull; 2 days ago</p>
-            </div>
-        </div>
-      
+    <div className="recommended">
+      {apiData.map((item, index) => (
+        <Link
+          to={`/video/${item.snippet.categoryId}/${item.id}`}
+          key={index}
+          className="side-video-list"
+        >
+          <img src={item.snippet.thumbnails.medium.url} alt={item.snippet.title} />
+          <div className="vid-info">
+            <h4>{item.snippet.title}</h4>
+            <p>{item.snippet.channelTitle}</p>
+            <p>
+              {valueConverter(item.statistics.viewCount)} views &bull;{" "}
+              {moment(item.snippet.publishedAt).fromNow()}
+            </p>
+          </div>
+        </Link>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Recommended
+export default Recommended;
