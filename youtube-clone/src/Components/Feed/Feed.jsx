@@ -1,16 +1,17 @@
 import React from 'react'
 import './Feed.css'
 import { assets } from '../../assets/assets'
+import { Link } from 'react-router-dom'
 
 const Feed = () => {
   return (
     <div className="feed">
-        <div className='card'>
+        <Link to={`video/20/34232`} className='card'>
             <img src={assets.thumbnail1} alt="" />
             <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, ratione.</h2>
             <h3>How i Grow</h3>
             <p>36K views &bull; 5 days ago</p>
-        </div>
+        </Link>
         <div className='card'>
             <img src={assets.thumbnail2} alt="" />
             <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, ratione.</h2>
