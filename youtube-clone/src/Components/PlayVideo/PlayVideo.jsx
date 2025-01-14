@@ -82,7 +82,7 @@ const PlayVideo = () => {
         </div>
         <button>Subscribe</button>
       </div>
-      <div className={`vid-description ${isExpanded ? "expand" : "truncate"}`} onClick={toggleExpand}>
+      <div className={`vid-description ${isExpanded ? "expand" : "truncate"}`} onClick={toggleExpand} >
         <p>{apiData ? apiData.snippet.description.slice(0,200): 'Description'}</p>
 
         <hr />
